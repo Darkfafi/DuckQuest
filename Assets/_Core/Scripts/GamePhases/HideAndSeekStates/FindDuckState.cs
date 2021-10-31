@@ -21,9 +21,12 @@ public class FindDuckState : HideAndSeekStateBase
 		_clockLabel.text = "";
 		StateHolder.CreatedDuck.EntityClickedEvent += OnDuckClickedEvent;
 
+		StateHolder.CreatedDuck.StartRunning();
+
 		foreach(BounceEntity frog in StateHolder.CreatedFrogs)
 		{ 
 			frog.EntityClickedEvent += OnFrogClickedEvent;
+			frog.StartRunning();
 		}
 
 		_phaseTimerRoutine = StartCoroutine(PhaseTimerRoutine());

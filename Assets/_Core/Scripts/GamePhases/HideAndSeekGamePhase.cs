@@ -88,8 +88,6 @@ public class HideAndSeekGamePhase : GamePhaseBase
 		_stateMachine.StartStateMachine();
 	}
 
-	
-
 	protected override void OnExit()
 	{
 		_stateMachine.StopStateMachine();

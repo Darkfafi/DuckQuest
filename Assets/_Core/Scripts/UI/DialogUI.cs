@@ -12,6 +12,8 @@ public class DialogUI : MonoBehaviour, IPointerClickHandler
 	private Image _portraitImage = null;
 	[SerializeField]
 	private Text _textLabel = null;
+	[SerializeField]
+	private GameObject _continueArrow = null;
 
 	[SerializeField]
 	private AudioSource _audioSource = null;
@@ -71,6 +73,11 @@ public class DialogUI : MonoBehaviour, IPointerClickHandler
 	{
 		_container.SetActive(false);
 
+		if(_continueArrow != null)
+		{
+			_continueArrow.SetActive(false);
+		}
+
 		if(_revealTextRoutine != null)
 		{
 			StopCoroutine(_revealTextRoutine);
@@ -94,6 +101,7 @@ public class DialogUI : MonoBehaviour, IPointerClickHandler
 				StopCoroutine(_revealTextRoutine);
 				_revealTextRoutine = null;
 				_textLabel.text = FormatDisplayText(1f, out _);
+				_continueArrow.SetActive(true);
 			}
 			else
 			{
@@ -116,6 +124,7 @@ public class DialogUI : MonoBehaviour, IPointerClickHandler
 			if (progress >= 1f)
 			{
 				progress = 1f;
+				_continueArrow.SetActive(true);
 			}
 			_textLabel.text = FormatDisplayText(progress, out int revealedCount);
 

@@ -39,10 +39,9 @@ public class BounceEntity : MonoBehaviour
 		}
 	}
 
-	protected void Start()
+	protected void Awake()
 	{
 		StopRunning();
-		StartRunning();
 	}
 
 	protected void FixedUpdate()
