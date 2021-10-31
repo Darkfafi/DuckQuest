@@ -13,12 +13,6 @@ public class BossFightGamePhase : GamePhaseBase
 	[SerializeField, Range(0.1f, 0.9f)]
 	private float _battleProgressStart = 0.5f;
 
-	[Header("Redirects")]
-	[SerializeField]
-	private GamePhaseBase _losePhase;
-	[SerializeField]
-	private GamePhaseBase _successPhase;
-
 	[Header("Requirements")]
 	[SerializeField]
 	private AudioSource _bgMusicSource = null;
@@ -42,7 +36,7 @@ public class BossFightGamePhase : GamePhaseBase
 	private BounceEntity _duckBossInstance = null;
 	private Coroutine _cinematicRoutine = null;
 
-	public override void Initialize(GamePhasesManager manager)
+	public override void Initialize(GameManager manager)
 	{
 		base.Initialize(manager);
 		_phaseUI.SetActive(false);
@@ -62,14 +56,14 @@ public class BossFightGamePhase : GamePhaseBase
 
 	protected void Update()
 	{
-		if(IsCurrentPhase && _cinematicRoutine == null)
+		if(IsCurrentState && _cinematicRoutine == null)
 		{
 			_battleProgress -= Time.deltaTime * _depletionRate;
 
 			if(_battleProgress <= 0f)
 			{
 				_battleProgress = 0f;
-				GamePhasesManager.SetPhase(_losePhase);
+				StateHolder.GoToLosePhase();
 			}
 			UpdateProgressBar();
 		}
@@ -159,6 +153,6 @@ public class BossFightGamePhase : GamePhaseBase
 		yield return new WaitForSeconds(1f);
 		_cinematicRoutine = null;
 
-		GamePhasesManager.SetPhase(_successPhase);
+		StateHolder.GoToNextPhase();
 	}
 }

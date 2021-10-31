@@ -12,12 +12,6 @@ public class HideAndSeekGamePhase : GamePhaseBase
 	[SerializeField]
 	private int _frogAmount = 10;
 
-	[Header("Redirects")]
-	[SerializeField]
-	private GamePhaseBase _losePhase;
-	[SerializeField]
-	private GamePhaseBase _successPhase;
-
 	[Header("Requirements")]
 	[SerializeField]
 	private AudioSource _bgmSource = null;
@@ -48,7 +42,7 @@ public class HideAndSeekGamePhase : GamePhaseBase
 	private Coroutine _phaseTimerRoutine = null;
 	private Coroutine _foundDuckRoutine = null;
 
-	public override void Initialize(GamePhasesManager manager)
+	public override void Initialize(GameManager manager)
 	{
 		base.Initialize(manager);
 		_phaseUI.SetActive(false);
@@ -134,7 +128,7 @@ public class HideAndSeekGamePhase : GamePhaseBase
 
 		_overlayUI.FlashOverlay(flashDuration);
 		yield return new WaitForSeconds(flashDuration);
-		GamePhasesManager.SetPhase(_successPhase);
+		StateHolder.GoToNextPhase();
 		_foundDuckRoutine = null;
 	}
 
@@ -149,7 +143,7 @@ public class HideAndSeekGamePhase : GamePhaseBase
 		}
 		_phaseTimerRoutine = null;
 
-		GamePhasesManager.SetPhase(_losePhase);
+		StateHolder.GoToLosePhase();
 	}
 
 	protected override void OnExit()

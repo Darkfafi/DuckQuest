@@ -11,9 +11,6 @@ public class DialogGamePhase : GamePhaseBase
 	[SerializeField]
 	private DialogUI _dialogUI = null;
 
-	[SerializeField]
-	private GamePhaseBase _stateAfterLastDialog = null;
-
 	private int _currentIndex = 0;
 
 	protected override void OnEnter()
@@ -40,7 +37,7 @@ public class DialogGamePhase : GamePhaseBase
 		_currentIndex++;
 		if(_currentIndex >= _dialog.Length)
 		{
-			GamePhasesManager.SetPhase(_stateAfterLastDialog);
+			StateHolder.GoToNextPhase();
 		}
 		else
 		{

@@ -1,5 +1,4 @@
-﻿using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class BasicScreenGamePhase : GamePhaseBase
@@ -10,11 +9,11 @@ public class BasicScreenGamePhase : GamePhaseBase
 	[SerializeField]
 	private Button _continueButton = null;
 	[SerializeField]
-	private GamePhaseBase _continuePhase = null;
-	[SerializeField]
 	private AudioSource _playSourceOnEnterState = null;
+	[SerializeField]
+	private GamePhaseBase _gamePhaseAfterContinue = null;
 
-	public override void Initialize(GamePhasesManager manager)
+	public override void Initialize(GameManager manager)
 	{
 		base.Initialize(manager);
 		_phaseUI.SetActive(false);
@@ -30,7 +29,14 @@ public class BasicScreenGamePhase : GamePhaseBase
 
 	private void OnContinueClicked()
 	{
-		GamePhasesManager.SetPhase(_continuePhase);
+		if (_gamePhaseAfterContinue != null)
+		{
+			StateHolder.SetGamePhase(_gamePhaseAfterContinue);
+		}
+		else
+		{
+			StateHolder.GoToNextPhase();
+		}
 	}
 
 	protected override void OnExit()

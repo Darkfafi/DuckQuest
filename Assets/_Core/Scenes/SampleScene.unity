@@ -637,8 +637,6 @@ MonoBehaviour:
   _depletionRate: 0.1
   _progressRate: 5
   _battleProgressStart: 0.5
-  _losePhase: {fileID: 2057083211}
-  _successPhase: {fileID: 1979388834}
   _bgMusicSource: {fileID: 332403612}
   _hitClip: {fileID: 8300000, guid: 62f378c8a0f223e41bb2798a6134faee, type: 3}
   _killClip: {fileID: 8300000, guid: 8169039e920495e40a9e567bd3b9cd34, type: 3}
@@ -1133,8 +1131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _phaseTime: 10
   _frogAmount: 100
-  _losePhase: {fileID: 2057083211}
-  _successPhase: {fileID: 332403611}
   _bgmSource: {fileID: 778138315}
   _foundDuckClip: {fileID: 8300000, guid: 62f378c8a0f223e41bb2798a6134faee, type: 3}
   _flashClip: {fileID: 8300000, guid: a00aecda9f528a1448235a634a1321f0, type: 3}
@@ -1271,6 +1267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf17bef7123c864d9a937e145ff1b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _winPhase: {fileID: 1979388834}
+  _losePhase: {fileID: 2057083211}
 --- !u!4 &837984778
 Transform:
   m_ObjectHideFlags: 0
@@ -1284,8 +1282,8 @@ Transform:
   m_Children:
   - {fileID: 1820426714}
   - {fileID: 566319889}
-  - {fileID: 2057083210}
   - {fileID: 1979388833}
+  - {fileID: 2057083210}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4235,7 +4233,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 837984778}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1979388834
 MonoBehaviour:
@@ -4251,8 +4249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _phaseUI: {fileID: 1125584048}
   _continueButton: {fileID: 24486508}
-  _continuePhase: {fileID: 2066743776}
   _playSourceOnEnterState: {fileID: 1979388835}
+  _gamePhaseAfterContinue: {fileID: 2066743776}
 --- !u!82 &1979388835
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4530,7 +4528,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 837984778}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2057083211
 MonoBehaviour:
@@ -4546,8 +4544,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _phaseUI: {fileID: 1170114871}
   _continueButton: {fileID: 1001518209}
-  _continuePhase: {fileID: 2066743776}
   _playSourceOnEnterState: {fileID: 2057083212}
+  _gamePhaseAfterContinue: {fileID: 2066743776}
 --- !u!82 &2057083212
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4692,7 +4690,6 @@ MonoBehaviour:
   - Hey there! Let's play a little game!
   - Try to tag me before the timer runs out, hihi!
   _dialogUI: {fileID: 1994158885}
-  _stateAfterLastDialog: {fileID: 778138314}
 --- !u!1 &2096952711
 GameObject:
   m_ObjectHideFlags: 0
