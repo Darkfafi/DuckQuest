@@ -618,9 +618,12 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 566319889}
-  m_RootOrder: 0
+  m_Children:
+  - {fileID: 1491798451}
+  - {fileID: 930027925}
+  - {fileID: 494528495}
+  m_Father: {fileID: 837984778}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &332403611
 MonoBehaviour:
@@ -634,18 +637,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403330ffd4477d0409ef2be30afd6c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _depletionRate: 0.1
-  _progressRate: 5
-  _battleProgressStart: 0.5
   _bgMusicSource: {fileID: 332403612}
-  _hitClip: {fileID: 8300000, guid: 62f378c8a0f223e41bb2798a6134faee, type: 3}
-  _killClip: {fileID: 8300000, guid: 8169039e920495e40a9e567bd3b9cd34, type: 3}
-  _dialogUI: {fileID: 1994158885}
   _duckBossPrefab: {fileID: 7138520982598274336, guid: c563791eae76f8a4eadf34badc5e06dd,
     type: 3}
   _phaseUI: {fileID: 1223271586}
-  _fillUI: {fileID: 271108382}
-  _overlayUI: {fileID: 419064894}
 --- !u!82 &332403612
 AudioSource:
   m_ObjectHideFlags: 0
@@ -897,6 +892,52 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &494528494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 494528495}
+  - component: {fileID: 494528496}
+  m_Layer: 0
+  m_Name: BossFightOutro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &494528495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494528494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 332403610}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &494528496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494528494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c24f425ad043e47a627405210723fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _killClip: {fileID: 8300000, guid: 8169039e920495e40a9e567bd3b9cd34, type: 3}
+  _overlayUI: {fileID: 419064894}
+  _dialogUI: {fileID: 1994158885}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,37 +1020,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &566319888
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 566319889}
-  m_Layer: 0
-  m_Name: BossFightPhases
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &566319889
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 566319888}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 332403610}
-  m_Father: {fileID: 837984778}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &613745110
 GameObject:
@@ -1097,7 +1107,7 @@ GameObject:
   - component: {fileID: 778138314}
   - component: {fileID: 778138315}
   m_Layer: 0
-  m_Name: Gameplay
+  m_Name: HideAndSeekGameplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1113,7 +1123,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1879310799}
+  - {fileID: 1452542682}
   m_Father: {fileID: 1820426714}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1129,19 +1141,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca75b3590d8b6349a451a6ab5c6c1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _phaseTime: 10
   _frogAmount: 100
   _bgmSource: {fileID: 778138315}
-  _foundDuckClip: {fileID: 8300000, guid: 62f378c8a0f223e41bb2798a6134faee, type: 3}
-  _flashClip: {fileID: 8300000, guid: a00aecda9f528a1448235a634a1321f0, type: 3}
   _frogPrefab: {fileID: 3524081827132274936, guid: 22043a19cf156f343ba11afceccc029a,
     type: 3}
   _duckPrefab: {fileID: 7138520982598274336, guid: 1a80826579b4b04498e92d669fef8cc7,
     type: 3}
-  _dialogUI: {fileID: 1994158885}
-  _overlayUI: {fileID: 419064894}
   _phaseUI: {fileID: 2096952711}
-  _clockLabel: {fileID: 1013968631}
 --- !u!82 &778138315
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1281,7 +1287,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1820426714}
-  - {fileID: 566319889}
+  - {fileID: 332403610}
   - {fileID: 1979388833}
   - {fileID: 2057083210}
   m_Father: {fileID: 0}
@@ -1365,6 +1371,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927023137}
   m_CullTransparentMesh: 0
+--- !u!1 &930027924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 930027925}
+  - component: {fileID: 930027926}
+  m_Layer: 0
+  m_Name: BossFightGameplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &930027925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930027924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 332403610}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &930027926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930027924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c58c575f41b8244ca2b50d5a0da279b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _battleProgressStart: 0.5
+  _depletionRate: 0.1
+  _progressRate: 5
+  _hitClip: {fileID: 8300000, guid: 62f378c8a0f223e41bb2798a6134faee, type: 3}
+  _fillContainer: {fileID: 1601687531}
+  _fillUI: {fileID: 271108382}
 --- !u!1 &1001518207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3657,6 +3712,98 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449979319}
   m_CullTransparentMesh: 0
+--- !u!1 &1452542681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1452542682}
+  - component: {fileID: 1452542683}
+  m_Layer: 0
+  m_Name: FoundDuckState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1452542682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452542681}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 778138313}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1452542683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452542681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c599f21ade1034fa830e322d3b3c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogUI: {fileID: 1994158885}
+  _overlayUI: {fileID: 419064894}
+  _foundDuckClip: {fileID: 8300000, guid: 62f378c8a0f223e41bb2798a6134faee, type: 3}
+  _flashClip: {fileID: 8300000, guid: a00aecda9f528a1448235a634a1321f0, type: 3}
+--- !u!1 &1491798450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1491798451}
+  - component: {fileID: 1491798452}
+  m_Layer: 0
+  m_Name: BossFightIntro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1491798451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491798450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 332403610}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1491798452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491798450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0921dd496db86ce439d1258d0098e9c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogUI: {fileID: 1994158885}
+  _hitClip: {fileID: 8300000, guid: 62f378c8a0f223e41bb2798a6134faee, type: 3}
 --- !u!1 &1515010463
 GameObject:
   m_ObjectHideFlags: 0
@@ -4127,6 +4274,52 @@ Transform:
   m_Father: {fileID: 837984778}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1879310798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1879310799}
+  - component: {fileID: 1879310800}
+  m_Layer: 0
+  m_Name: FindDuckState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1879310799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879310798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 778138313}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1879310800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879310798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e5383ae16204044a532fecdf7684a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _phaseTime: 10
+  _dialogUI: {fileID: 1994158885}
+  _clockLabel: {fileID: 1013968631}
 --- !u!1 &1912588027
 GameObject:
   m_ObjectHideFlags: 0

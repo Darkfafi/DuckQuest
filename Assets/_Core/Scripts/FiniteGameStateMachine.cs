@@ -4,6 +4,9 @@ using UnityEngine;
 public class FiniteGameStateMachine<Parent> : IDisposable
 	where Parent : MonoBehaviour
 {
+	public delegate void StateSwitchHandler(GameStateBase<Parent> newState, GameStateBase<Parent> prevState);
+	public event StateSwitchHandler StateSwitchedEvent;
+
 	public readonly Parent StatesHolder;
 	public readonly GameStateBase<Parent>[] States;
 
@@ -14,17 +17,19 @@ public class FiniteGameStateMachine<Parent> : IDisposable
 
 	public bool IsRunning => CurrentState != null;
 
-	public bool IsTempState
+	public bool IsLooping
 	{
 		get; private set;
 	}
 
+	private bool _isTempState = false;
 	private GameStateBase<Parent> _nextState = null;
 
-	public FiniteGameStateMachine(Parent parent, GameStateBase<Parent>[] states, bool startStateMachine = true)
+	public FiniteGameStateMachine(Parent parent, GameStateBase<Parent>[] states, bool isLoopingStateMachine, bool startStateMachine = true)
 	{
 		StatesHolder = parent;
 		States = states;
+		IsLooping = isLoopingStateMachine;
 
 		for (int i = 0; i < states.Length; i++)
 		{
@@ -45,6 +50,14 @@ public class FiniteGameStateMachine<Parent> : IDisposable
 		}
 	}
 
+	public void StopStateMachine()
+	{
+		if(IsRunning)
+		{
+			SetState(null);
+		}
+	}
+
 	public void Dispose()
 	{
 		EndCurrentState();
@@ -54,12 +67,12 @@ public class FiniteGameStateMachine<Parent> : IDisposable
 		}
 	}
 
-	public int GetCurrentPhaseIndex()
+	public int GetCurrentStateIndex()
 	{
 		return Array.IndexOf(States, CurrentState);
 	}
 
-	public int GetPhasesCount()
+	public int GetStatesCount()
 	{
 		return States.Length;
 	}
@@ -74,24 +87,23 @@ public class FiniteGameStateMachine<Parent> : IDisposable
 		}
 		else
 		{
-			int index = GetCurrentPhaseIndex();
-			SetState((index + 1) % States.Length);
-		}
-	}
-
-	public void SetState(string name)
-	{
-		for (int i = 0; i < States.Length; i++)
-		{
-			GameStateBase<Parent> state = States[i];
-			if (state.name == name)
+			int index = GetCurrentStateIndex();
+			if (IsLooping)
 			{
-				SetState(state);
-				return;
+				SetState((index + 1) % States.Length);
+			}
+			else
+			{
+				if (index == States.Length - 1)
+				{
+					StopStateMachine();
+				}
+				else
+				{
+					SetState(index + 1);
+				}
 			}
 		}
-
-		throw new Exception($"No Phase found with name {name}");
 	}
 
 	public void SetState(int index)
@@ -101,27 +113,35 @@ public class FiniteGameStateMachine<Parent> : IDisposable
 
 	public void SetState(GameStateBase<Parent> state, GameStateBase<Parent> nextState = null)
 	{
-		if(state.StateHolder != StatesHolder)
-		{
-			throw new Exception($"State {state} belongs to {state.StateHolder}, and can't be used by {StatesHolder}");
-		}
+		GameStateBase<Parent> preState = CurrentState;
 
 		EndCurrentState();
 
-		IsTempState = false;
+		_isTempState = false;
 		_nextState = nextState;
 
-		if (!state.IsInitialized)
+		if (state != null)
 		{
-			IsTempState = true;
-			state.Initialize(StatesHolder);
+			if (state.StateHolder != StatesHolder)
+			{
+				throw new Exception($"State {state} belongs to {state.StateHolder}, and can't be used by {StatesHolder}");
+			}
+
+			if (!state.IsInitialized)
+			{
+				_isTempState = true;
+				state.Initialize(StatesHolder);
+			}
 		}
 
 		CurrentState = state;
+
 		if (CurrentState != null)
 		{
 			CurrentState.Enter();
 		}
+
+		StateSwitchedEvent?.Invoke(CurrentState, preState);
 	}
 
 	private void EndCurrentState()
@@ -130,10 +150,10 @@ public class FiniteGameStateMachine<Parent> : IDisposable
 		{
 			CurrentState.Exit();
 
-			if (IsTempState)
+			if (_isTempState)
 			{
 				CurrentState.Deinitialize();
-				IsTempState = false;
+				_isTempState = false;
 			}
 
 			CurrentState = null;

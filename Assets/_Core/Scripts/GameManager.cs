@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
 	protected void Awake()
 	{
-		_gamePhaseStateMachine = new FiniteGameStateMachine<GameManager>(this, GetComponentsInChildren<GamePhaseBase>(), false);
+		_gamePhaseStateMachine = new FiniteGameStateMachine<GameManager>(this, GetComponentsInChildren<GamePhaseBase>(), true, false);
 		_winPhase.Initialize(this);
 		_losePhase.Initialize(this);
 	}
