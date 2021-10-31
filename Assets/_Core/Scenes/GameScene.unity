@@ -1447,7 +1447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleProgressStart: 0.5
   _depletionRate: 0.1
-  _progressRate: 5
+  _progressRate: 0.025
   _hitClip: {fileID: 8300000, guid: 62f378c8a0f223e41bb2798a6134faee, type: 3}
   _fillContainer: {fileID: 1601687531}
   _fillUI: {fileID: 271108382}

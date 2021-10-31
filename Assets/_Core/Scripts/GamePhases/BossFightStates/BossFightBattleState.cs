@@ -57,7 +57,7 @@ public class BossFightBattleState : BossFightStateBase
 
 	private void OnBossClicked(BounceEntity boss)
 	{
-		SetBattleProgress(_battleProgress + Time.deltaTime * _progressRate);
+		SetBattleProgress(_battleProgress + _progressRate);
 		StateHolder.StateAudioSource.PlayOneShot(_hitClip);
 		StateHolder.DuckBossInstance.transform.DOComplete();
 		StateHolder.DuckBossInstance.transform.DOPunchScale(Vector3.one * 0.3f, 0.2f, 5);
